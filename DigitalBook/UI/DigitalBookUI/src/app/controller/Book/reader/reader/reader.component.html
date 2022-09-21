@@ -1,0 +1,72 @@
+<div class="container">
+    <table class="table table-striped" style="margin-top: 40px;">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Author </th>
+                <th>Publisher </th>
+                <th>Price</th>
+                <th>Publish Date</th>
+                <!-- <th>Category</th> -->
+                <th>Read/Buy</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let b of puchases">
+                <td>{{ b.book?.bookName}}</td>
+                <td>{{ b.book?.user?.userName}}</td>
+                <td>{{ b.book?.publisher}}</td>
+                <td>{{ b.book?.price}}</td>
+                <td>{{ b.book?.publishedDate | date:'longDate'}}</td>
+                <!-- <td>{{ book.categoryName}}</td> -->
+                <td>
+                    <div *ngIf="b.emailId == 'NA' ">
+                        <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#purchaseModal"
+                            (click)="purchaseClick(b)" data-backdrop="static" data-keyboard="false">Buy</button>
+                    </div>
+                    <div *ngIf="b.emailId != 'NA' ">
+                        <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#readBookModal"
+                            (click)="readBookClick(b)" data-backdrop="static" data-keyboard="false">Read</button>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<!-- Purchase Modal -->
+<div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':display}">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">{{ModalTitle}}</h4>
+                <button type="button" class="close" aria-label="Close" (click)="onCloseHandledofpurchase()"><span
+                        aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body">
+                <app-purchasebookhistory [book]="book"></app-purchasebookhistory>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" (click)="onCloseHandledofpurchase()">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Read Book Modal -->
+<div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':readBookdisplay}">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">{{ModalReadBookTitle}}</h4>
+                <button type="button" class="close" aria-label="Close" (click)="onCloseHandled()"><span
+                        aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body">
+                <p>{{objpurchase.book?.content}}</p>
+                <div class="modal-footer" style="padding: 7px;">
+                    <button type="button" class="btn btn-default" (click)="onCloseHandled()">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>

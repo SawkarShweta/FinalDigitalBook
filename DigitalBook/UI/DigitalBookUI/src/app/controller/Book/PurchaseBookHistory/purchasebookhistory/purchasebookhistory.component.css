@@ -1,0 +1,15 @@
+.modalHeader{
+    background-color:#28a745 ;
+    color: white;
+}
+
+.modal-body {
+    /* 100% = dialog height, 120px = header + footer */
+    max-height: calc(100% - 200px);
+    overflow-y: scroll;
+}
+
+.container {
+    height: 135px;
+    overflow-y: scroll;
+   }

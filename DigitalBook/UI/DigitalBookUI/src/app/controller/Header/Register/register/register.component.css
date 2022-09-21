@@ -1,0 +1,32 @@
+.modalHeader{
+    background-color: #ff7043 ;
+    color: white;
+}
+
+.btnregister{
+    background-color: #ff7043;
+    color: white;
+}
+
+i{
+    color: #ff7043;
+}
+
+.modal-dialog,
+.modal-content {
+    height: 90%;
+}
+
+.modal-body {
+    /* 100% = dialog height, 120px = header + footer */
+    max-height: calc(100% - 120px);
+    overflow-y: scroll;
+}
+
+.modal-backdrop.in {
+	opacity: 0.9;
+}
+
+.tophight{
+    top: 40px;
+}

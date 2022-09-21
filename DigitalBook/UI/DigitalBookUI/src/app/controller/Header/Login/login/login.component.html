@@ -1,0 +1,46 @@
+<div class="modal tophight" tabindex="-1" role="dialog" [ngStyle]="{'display':displayStyle}">
+    <div class="modal-dialog" role="document">
+        <form name="form" (ngSubmit)="f.form.valid && login()" #f="ngForm" novalidate>
+        <div class="modal-content">
+            <div class="modal-header modalHeader">
+                <legend class="modal-title">Log into Your Account</legend>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="closePopup()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div id="code_signin" class="row">
+                    <div class="col-md-4 col-lg-4 img-wrapper">
+                        <img width="150" height="100%"
+                            src="https://codedthemes.com/wp-content/uploads/2022/04/sign-in-left-img-1.png.webp">
+                    </div>
+                    <div class="col-md-8 col-lg-8 content-wrapper">
+                        <!-- <form id="add_login_form" action="" method="post" [formGroup]="loginForm"> -->
+                            <!-- <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate> -->
+                            <div class="md-form mb-5 form-group" [ngClass]="{ 'has-error': f.submitted && !username.valid }">
+                                <i class="fas fa-envelope prefix grey-text"></i>&nbsp;
+                                <label data-error="wrong" data-success="right" for="forEmail">User Name</label>
+                                <input type="text" id="idUserName" class="form-control"  name="username"  [(ngModel)]="user.userName" #username="ngModel" required >
+                                <div *ngIf="f.submitted && !username.valid" class="help-block">Username is required</div>
+                            </div>
+
+                            <div class="md-form mb-4 form-group" [ngClass]="{ 'has-error': f.submitted && !password.valid }">
+                                <i class="fas fa-lock prefix grey-text"></i>&nbsp;
+                                <label data-error="wrong" data-success="right" for="forPassword">Your password</label>
+                                <input type="password" id="idPassword" class="form-control" name="password" [(ngModel)]="user.userPassword" #password="ngModel" required>
+                                <div *ngIf="f.submitted && !password.valid" class="help-block">Password is required</div>
+                            </div>
+                        <!-- </form> -->
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer d-flex justify-content-center form-group">
+                <button class="btn btn-success">Login</button>
+            </div>
+            <div>
+                <p *ngIf="loginfailed" style="text-align: center;color: red;">Incorrect Username or Password</p>
+            </div>
+        </div>
+        </form>
+    </div>
+</div>

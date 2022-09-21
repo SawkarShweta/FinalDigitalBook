@@ -1,0 +1,60 @@
+<div class="container">
+    <h2> Create Book</h2>
+    <div class="cards-container"> 
+      <div class="cards-form" style="border: 1px solid;padding:10px;">
+          <form #form="ngForm" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+                <label for="">Title</label>
+                <input type="text" name="title" [(ngModel)]="book.bookName">
+            </div>
+            <div class="form-group">
+                <label for="">Category</label>
+                <select id="idCategory" name="role" class="form-control validate" [(ngModel)]="book.categoryId">
+                    <option *ngFor="let category of categories" [value]="category.categoryId">
+                      {{category.categoryName}}
+                    </option>
+                  </select>
+            </div>
+            <div class="form-group">
+                <label for="">Price</label>
+                <input type="number" name="price" [(ngModel)]="book.price">
+            </div>
+            <div class="form-group">
+                <label for="">Publisher</label>
+                <input type="text" name="publisher" [(ngModel)]="book.publisher">
+            </div>
+            <div class="form-group">
+                <label for="">Content</label>
+                <input type="text" name="content" [(ngModel)]="book.content">
+            </div>
+            <div class="form-group">
+                <button>Save</button>
+              </div>
+          </form>
+      </div>
+      <div class="cards-grid">
+        <div class="card-row">
+            <div class="card-row-details" *ngIf="books.length>0">
+                <table class="table table-bordered">
+                    <thead>
+                        <th>Book Name</th>
+                        <th>Price</th>
+                         <th>Publisher</th>
+                         <th></th>
+                    </thead>
+                    <tbody *ngFor="let book of books">
+                        <tr>
+                            <td>{{ book.bookName }}</td>
+                            <td>{{ book.price }}</td>
+                            <td>{{ book.publisher }}</td>
+                            <td>
+                                <button type="button" #btn (click)="blockBook(book,btn)" class="btn btn-info" data-toggle="collapse" value="{{book.active?'Block':'Unblock'}}">{{btn.value}}</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>

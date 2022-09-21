@@ -1,0 +1,63 @@
+<div class="modal tophight" tabindex="-1" role="dialog" [ngStyle]="{'display':displayStyle}">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header modalHeader">
+                <legend class="modal-title">Register New Account</legend>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="closePopup()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div id="code_signup" class="row">
+                    <div class="col-md-4 col-lg-4 img-wrapper">
+                        <img width="150" height="300" src="https://codedthemes.com/wp-content/uploads/2022/04/Signup-svg.png.webp" alt="Signup-svg" loading="lazy">
+                    </div>
+                    <div class="col-md-8 col-lg-8 content-wrapper">
+                        <form id="add_register_form" name="register_form" action="" method="post" (ngSubmit)="onSubmit()" novalidate>
+                            <div class="md-form mb-5">
+                                <i class="fas fa-user prefix grey-text"></i>&nbsp;
+                                <label data-error="wrong" data-success="right" for="userName">User name</label>
+                                <input type="text" id="idUserName" name="userName" class="form-control validate" [(ngModel)]="user.userName" required>
+                                <!-- <p show="register_form.userName.$invalid && !register_form.userName.$pristine" class="help-block">You name is required.</p> -->
+                            </div>
+                            <div class="md-form mb-5">
+                                <i class="fas fa-envelope prefix grey-text"></i>&nbsp;
+                                <label data-error="wrong" data-success="right" for="userEmail">Your email</label>
+                                <input type="email" id="idUserEmail" name="emailId" class="form-control validate" [(ngModel)]="user.emailId">
+                            </div>
+                            <div class="md-form mb-5">
+                                <i class="fas fa-user prefix grey-text"></i>&nbsp;
+                                <label data-error="wrong" data-success="right" for="firstName">First name</label>
+                                <input type="text" id="idFirstName" name="firstName" class="form-control validate" [(ngModel)]="user.firstName">
+                            </div>
+                            <div class="md-form mb-5">
+                                <i class="fas fa-user prefix grey-text"></i>&nbsp;
+                                <label data-error="wrong" data-success="right" for="lastName">Last name</label>
+                                <input type="text" id="idLastName" name="lastName" class="form-control validate" [(ngModel)]="user.lastName">
+                            </div>
+                            <div class="md-form mb-5">
+                                <i class="fas fa-users prefix grey-text"></i>&nbsp;
+                                <label data-error="wrong" data-success="right" for="role">Role</label>
+                                <select id="idRole" name="role" class="form-control validate" [(ngModel)]="user.roleId">
+                                    <option *ngFor="let role of roles" [value]="role.id">
+                                      {{role.name}}
+                                    </option>
+                                  </select>
+                            </div>
+                            <div class="md-form mb-4">
+                                <i class="fas fa-lock prefix grey-text"></i>&nbsp;
+                                <label data-error="wrong" data-success="right" for="pass">Your password</label>
+                                <input type="password" id="idPassword" name="userPassword" class="form-control validate" [(ngModel)]="user.userPassword">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer d-flex justify-content-center">
+                <button class="btn btnregister" (click)="onSubmit()"  ng-disabled="register_form.userName.$dirty && register_form.userName.$invalid">Sign Up</button>
+                <div class="have_account"><span>Already have an Account?</span><a href="/login/" class="signin">Login
+                        Now</a></div>
+            </div>
+        </div>
+    </div>
+</div>

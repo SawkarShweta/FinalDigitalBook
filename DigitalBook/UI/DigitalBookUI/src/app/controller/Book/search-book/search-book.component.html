@@ -1,0 +1,77 @@
+<div class="container">
+    <h2 style="text-align: center;"> Search Books</h2>
+    <div class="cards-container"> 
+      <div class="cards-form"  style="border: 1px solid;padding:10px;height:420px;">
+          <form #form="ngForm" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+                <label for="">Title</label>
+                <input type="text" name="title" [(ngModel)]="book.bookName">
+            </div>
+            <div class="form-group" *ngIf="book.user">
+                <label for="">Author</label>
+                <input type="text" name="author" [(ngModel)]="book.user.userName">
+            </div>
+            <div class="form-group">
+                <label for="">Publisher</label>
+                <input type="text" name="publisher" [(ngModel)]="book.publisher">
+            </div>
+            <div class="form-group">
+                <label for="">Released Date</label>
+                <input type="date" name="releasedDate" [(ngModel)]="book.publishedDate">
+            </div>
+            <div class="form-group">
+                <button>Search</button>
+              </div>
+          </form>
+      </div>
+      <div class="cards-grid">
+        <div class="card-row">
+            <div class="card-row-details" *ngIf="books.length>0">
+                <table class="table table-bordered">
+                    <thead>
+                        <th>Book Name</th>
+                        <th>Price</th>
+                         <th>Author Name</th>
+                         <th>Publisher</th>
+                         <th></th>
+                    </thead>
+                    <tbody *ngFor="let book of books">
+                        <tr>
+                            <td>{{ book.bookName }}</td>
+                            <td>{{ book.price }}</td>
+                            <td>{{ book.user?.userName }}</td>
+                            <td>{{ book.publisher }}</td>
+                            <td>
+                                <button type="button" class="btn btn-success" 
+                                data-bs-toggle="modal" data-bs-target="#purchaseModal"
+                                (click)="purchaseClick(book)"
+                                data-backdrop="static" data-keyboard="false">Buy</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  
+ <!-- Purchase Modal -->
+ <div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':display}">
+    <div class="modal-dialog" role="document">
+          <div class="modal-content">
+                <div class="modal-header modalHeader">
+                      <legend class="modal-title">{{ModalTitle}}</legend>
+                      <button type="button" class="close" aria-label="Close" (click)="onCloseHandled()"><span aria-hidden="true">&times;</span></button>
+                    </div>
+           <div class="modal-body">
+               <app-purchasebookhistory [book]="book"></app-purchasebookhistory>
+                    </div>
+                <div class="modal-footer">
+                      <button type="button" class="btn btn-default" (click)="onCloseHandled()" >Close</button>
+                    </div>
+       </div>
+        </div>
+</div>
+  

@@ -1,0 +1,37 @@
+{
+  "Routes": [
+    {
+      //https://localhost:7044/api/UserMasters
+      "DownstreamPathTemplate": "/api/UserMasters",
+      "DownstreamScheme": "https",
+      "DownstreamHttpMethod": "GET",
+      "RouteIsCaseSensitive": false,
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "7044"
+        }
+      ],
+      "UpstreamPathTemplate": "/Users",
+      "UpstreamHttpMethod": [ "Get" ]
+    },
+    {
+      //https://localhost:7290/api/Books
+      "DownstreamPathTemplate": "/api/Books",
+      "DownstreamScheme": "https",
+      "DownstreamHttpMethod": "GET",
+      "RouteIsCaseSensitive": false,
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "7290"
+        }
+      ],
+      "UpstreamPathTemplate": "/Books",
+      "UpstreamHttpMethod": [ "Get" ]
+    }
+  ],
+  "GlobalConfiguration": {
+    "BaseUrl": "https://localhost:7243"
+  }
+}
